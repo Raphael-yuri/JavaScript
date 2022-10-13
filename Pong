@@ -1,0 +1,144 @@
+  //Variaveis Bolinha
+  let Xbolinha = 300
+  let Ybolinha = 180
+  let Diametro = 10
+  let VelocidadeXbolinha = 5;
+  let VelocidadeYbolinha = 5;
+  let raio =  10
+
+  //Variaveis RaqueteEsquerda
+  let Xraquete = 10
+  let Yraquete = 150
+  let Graquete = 10
+  let Traquete = 80
+  
+  //Variaveis RaqueteDireita
+  let XraqueteDireita = 580
+  let YraqueteDireita = 300
+  let GraqueteDireita = 10
+  let TraqueteDireita = 80
+  let VelocidadeYDireita = 1
+
+  //Placar 
+  let MeusPontos = 0
+  let PontosOponentes = 0
+
+  //Biblioteca
+   
+  let colidiu = false;
+
+
+  function setup() 
+    {createCanvas(600, 400);}
+
+  function draw()
+  
+  {background(0);
+  movimentoBolinha()
+  raqueteEsquerda()
+  MovimentoRaqueteEsquerda() 
+  ColisaoRaquetes(Xraquete,Yraquete)
+  ColisaoRaquetes(XraqueteDireita,YraqueteDireita)
+  RaqueteDireita()
+  MovimentoRaqueteDireita()
+  Multiplayer()
+  Placar()
+  PlacarOponente()
+  MarcarPontos()
+  MarcarPontosOponentes()
+  Linhadomeio()}
+
+  function movimentoBolinha()
+    {circle
+      (Xbolinha,Ybolinha,Diametro);
+  
+  Xbolinha += VelocidadeXbolinha;
+  Ybolinha += VelocidadeYbolinha
+    
+  if(Xbolinha + raio > width ||Xbolinha - raio < 0)
+    {VelocidadeXbolinha *= -1;}
+  
+  if(Ybolinha + raio > height || Ybolinha - raio < 0)
+    {VelocidadeYbolinha *= -1}}
+
+  function raqueteEsquerda()
+    {rect
+      (Xraquete,Yraquete,Graquete,Traquete)}
+    
+  function MovimentoRaqueteEsquerda()
+    {if(keyIsDown(DOWN_ARROW)){
+      Yraquete += 10}
+    
+  if(keyIsDown(UP_ARROW)){
+      Yraquete -= 10}}
+
+  function RaqueteDireita()
+    {rect
+      (XraqueteDireita,YraqueteDireita,GraqueteDireita,TraqueteDireita)}
+
+  function MovimentoRaqueteDireita()
+    {if (VelocidadeYDireita || Ybolinha){
+      YraqueteDireita = Ybolinha - 50}}
+
+  function ColisaoRaquetes(x,y){
+    
+  colidiu = 
+    collideRectCircle(x, y,Graquete,Traquete, Xbolinha, Ybolinha, raio);
+    
+  if (colidiu) 
+    {VelocidadeXbolinha *= -1;}}
+
+  function Placar()
+
+  {textSize(50)
+    text(MeusPontos,200,50)
+      fill (255)}
+
+  function PlacarOponente()
+
+    {text(PontosOponentes,380,50)
+      fill (255)}
+
+  function MarcarPontos()
+
+  {if(Xbolinha > 590){
+    PontosOponentes += 1}}
+  
+  function MarcarPontosOponentes()
+
+  {if(Xbolinha < 10){
+    MeusPontos += 1}}
+
+  function Linhadomeio(){
+    
+    rect(290,0,5,20)
+    rect(290,25,5,20)
+    rect(290,50,5,20)
+    rect(290,75,5,20)
+    rect(290,100,5,20)
+    rect(290,125,5,20)
+    rect(290,150,5,20)
+    rect(290,175,5,20)
+    rect(290,200,5,20)
+    rect(290,225,5,20)
+    rect(290,250,5,20)
+    rect(290,275,5,20)
+    rect(290,300,5,20)
+    rect(290,325,5,20)
+    rect(290,350,5,20)
+    rect(290,375,5,20)}
+    
+    function Multiplayer(){
+      
+   {if(keyIsDown(83)){
+      YraqueteDireita += 10}
+    
+    if(keyIsDown(87)){
+      YraqueteDireita -= 10}}
+      
+    function Limitador(){ 
+      if(Yraquete = width){
+        
+    }
+    }
+    }
